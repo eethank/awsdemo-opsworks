@@ -9,7 +9,7 @@ service "haproxy" do
 end
 
 service "monit" do
-  supports :status => false, :restart => true, :reload => true
+  supports :status => true, :restart => true, :reload => true
   action [:enable, :start]
 end
 
@@ -27,3 +27,4 @@ template '/etc/monit.d/hpfailwatch.monitrc' do
   mode 0440
   notifies :reload, "service[monit]", :immediately
 end
+
