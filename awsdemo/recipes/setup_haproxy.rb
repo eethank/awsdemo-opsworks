@@ -16,8 +16,9 @@ end
 template '/etc/failure.sh' do
   source 'failure.sh.erb'
   variables({
-    :instance_id => search('aws_opsworks_instance').first['instance_id']
-  })
+    :instance_id => search('aws_opsworks_instance').first['instance_id'],
+    :region => search('aws_opsworks_stack').first['region']
+            })
   owner 'root'
   group 'root'
   mode 0755
