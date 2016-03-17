@@ -6,13 +6,16 @@ RET=$?
 if [ "$RET" = '0' -a "$OUT" != '<%= node[:stack][:primary_ip] %>' ]; then
 
  # EIP swapping
+ aws --region us-east-1 opsworks associate-elastic-ip \
+  --elastic-ip <%= node[:stack][:primary_ip] %> \
+  --instance-id <%= node[:opsworks] %>
 
  # Notification sending
- aws --region ap-northeast-1 sns publish \
+ aws --region <%= node[:opsworks][:instance][:region] %> sns publish \
   --topic-arn <%= node[:stack][:failover_sns] %> \
   --subject "HAProxy failover notification" \
   --message \
-  "Instance 'OK' took over <%= node[:stack][:primary_ip] %>"
+  "Instance <%= node[:opsworks] %> took over <%= node[:stack][:primary_ip] %>"
 
 fi
 
