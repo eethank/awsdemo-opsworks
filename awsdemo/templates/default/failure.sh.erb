@@ -11,7 +11,7 @@ if [ "$RET" = '0' -a "$OUT" != '<%= node[:stack][:primary_ip] %>' ]; then
   --instance-id <%= node[:opsworks] %>
 
  # Notification sending
- aws --region <%= node[:opsworks][:instance][:region] %> sns publish \
+ aws --region <%= node[:opsworks] %> sns publish \
   --topic-arn <%= node[:stack][:failover_sns] %> \
   --subject "HAProxy failover notification" \
   --message \
