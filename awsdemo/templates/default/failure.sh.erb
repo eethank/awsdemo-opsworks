@@ -8,7 +8,7 @@ if [ "$RET" = '0' -a "$OUT" != '<%= node[:stack][:primary_ip] %>' ]; then
  # EIP swapping
  aws --region us-east-1 opsworks associate-elastic-ip \
   --elastic-ip <%= node[:stack][:primary_ip] %> \
-  --instance-id <%= node[:host] %>
+  --instance-id <%= #{$instance_id} %>
 
  # Notification sending
  aws --region <%= node %> sns publish \
