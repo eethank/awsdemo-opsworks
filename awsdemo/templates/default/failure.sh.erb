@@ -1,0 +1,21 @@
+#!/bin/sh
+
+
+OUT=$( curl -qSfsw '\n' http://checkip.amazonaws.com ) 2>/dev/null
+RET=$?
+
+if [ "$RET" = '0' -a "$OUT" != '<%= node[:stack][:primary_ip] %>' ]; then
+
+ # EIP swapping
+ aws --region us-east-1 opsworks associate-elastic-ip \
+  --elastic-ip <%= node[:stack][:primary_ip] %> \
+  --instance-id <%= node[:opsworks][:instance][:id] %>
+
+ # Notification sending
+ aws --region <%= node[:opsworks][:instance][:region] %> sns publish \
+  --topic-arn <%= node[:stack][:failover_sns] %> \
+  --subject "HAProxy failover notification" \
+  --message \
+  "Instance <%= node[:opsworks][:instance][:id] %> took over <%= node[:stack][:primary_ip] %>"
+
+fi

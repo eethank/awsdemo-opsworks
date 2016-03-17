@@ -1,0 +1,7 @@
+check host <%= node[:stack][:primary_ip] %> with address <%= node[:stack][:primary_ip] %>
+    if failed
+        port 80
+        protocol HTTP
+        request /haproxy?stats
+        timeout 30 seconds
+    then exec "/etc/failure.sh"
