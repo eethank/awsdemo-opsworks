@@ -3,6 +3,11 @@ package "haproxy" do
   action :install
 end
 
+service "haproxy" do
+  supports :status => true, :restart => true, :reload => true
+  action [:enable, :start]
+end
+
 service "monit" do
   supports :status => false, :restart => true, :reload => true
   action [:enable, :start]
