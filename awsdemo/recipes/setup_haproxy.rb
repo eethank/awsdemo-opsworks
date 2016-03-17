@@ -1,4 +1,8 @@
 
+package "haproxy" do
+  action :install
+end
+
 service "monit" do
   supports :status => false, :restart => true, :reload => true
   action [:enable, :start]
