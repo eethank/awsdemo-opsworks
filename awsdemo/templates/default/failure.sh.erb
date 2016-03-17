@@ -12,7 +12,7 @@ if [ "$RET" = '0' -a "$OUT" != '<%= node[:stack][:primary_ip] %>' ]; then
   --topic-arn <%= node[:stack][:failover_sns] %> \
   --subject "HAProxy failover notification" \
   --message \
-  "Instance <%= node[:opsworks][:instance][:id] %> took over <%= node[:stack][:primary_ip] %>"
+  "Instance 'OK' took over <%= node[:stack][:primary_ip] %>"
 
 fi
 
