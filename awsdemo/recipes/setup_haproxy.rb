@@ -16,7 +16,7 @@ end
 template '/etc/failure.sh' do
   source 'failure.sh.erb'
   variables({
-    :instance_id => search('aws_opsworks_instance', 'instance_id')
+    :instance_id => search('aws_opsworks_instance').first['instance_id']
   })
   owner 'root'
   group 'root'
