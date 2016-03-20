@@ -13,7 +13,7 @@ end
 servers = []
 idx = 1 
 tomcat_servers.each do |s|
-  str = "server app" + idx.to_s + " " + s['private_ip'] + ":8080 check"
+  str = "server app" + idx.to_s + " " + s['private_ip'].to_s + ":8080 check"
   servers << str
   idx = idx + 1
 end
