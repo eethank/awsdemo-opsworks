@@ -9,3 +9,21 @@ file "/tmp/test" do
   action :create
 end
 
+
+servers = []
+idx = 1 
+tomcat_servers.each do |s|
+  str = "server app" + idx.to_s + " " + s + ":8080 check"
+  servers << str
+  idx = idx + 1
+end
+
+template '/etc/haproxy/haproxy.conf' do
+  source 'haproxy.conf.erb'
+  mode '0440'
+  owner 'root'
+  group 'root'
+  variables({
+    :tomcat_servers => servers
+            })
+end
