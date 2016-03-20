@@ -11,6 +11,11 @@ tomcat_servers.each do |s|
   idx = idx + 1
 end
 
+service "haproxy" do
+  supports :restart => true
+  action :enable
+end
+
 template '/etc/haproxy/haproxy.cfg' do
   source 'haproxy.cfg.erb'
   mode '0440'
