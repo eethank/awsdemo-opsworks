@@ -1,5 +1,5 @@
 
-tomcat_servers = search(:node, "layers:tomcat-server").first
+tomcat_servers = search("aws_opsworks_instance").first
 #Chef::Log.info("Private IP: #{tomcat_servers[:private_ip]}")
 Chef::Log.info("Private IP: #{tomcat_servers}")
 
@@ -13,7 +13,7 @@ end
 servers = []
 idx = 1 
 tomcat_servers.each do |s|
-  str = "server app" + idx.to_s + " " + s + ":8080 check"
+  str = "server app" + idx.to_s + " " + s['private_ip'] + ":8080 check"
   servers << str
   idx = idx + 1
 end
