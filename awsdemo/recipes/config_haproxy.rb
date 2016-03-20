@@ -8,3 +8,4 @@ file "/tmp/test" do
   mode 0644
   action :create
 end
+
