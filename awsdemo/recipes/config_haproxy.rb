@@ -12,8 +12,9 @@ tomcat_servers.each do |s|
 end
 
 service "haproxy" do
-  supports :restart => true
-  action :enable
+  supports :status => true, :restart => true, :reload => true
+  action [:enable, :reload]
+
 end
 
 template '/etc/haproxy/haproxy.cfg' do
