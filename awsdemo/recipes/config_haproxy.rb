@@ -19,4 +19,5 @@ template '/etc/haproxy/haproxy.cfg' do
   variables({
     :tomcat_servers => servers
             })
+  notifies :reload, "service[haproxy]", :immediately
 end
