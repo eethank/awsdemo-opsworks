@@ -1,5 +1,7 @@
 
-tomcat_servers = search("aws_opsworks_instance").first
+tomcat_layer_id = search("aws_opsworks_layer", "name:Tomcat Server").first['layer_id']
+
+tomcat_servers = search("aws_opsworks_instance", "layer_id:" + tomcat_layer_id).first
 #Chef::Log.info("Private IP: #{tomcat_servers[:private_ip]}")
 Chef::Log.info("Private IP: #{tomcat_servers}")
 
@@ -8,6 +10,7 @@ file "/tmp/test" do
   mode 0644
   action :create
 end
+
 
 
 servers = []
