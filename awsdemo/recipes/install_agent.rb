@@ -16,6 +16,7 @@ service "codedeploy-agent" do
 end
 
 
+=begin
 #template "#{Chef::Config[:file_cache_path]}/cwlogs.cfg" do
 template "/tmp/cwlogs.cfg" do
   source "cwlogs.cfg.erb"
@@ -38,3 +39,4 @@ execute "Install CloudWatch Logs agent" do
   command "/opt/aws/cloudwatch/awslogs-agent-setup.py -n -r us-east-1 -c /tmp/cwlogs.cfg"
   not_if { system "pgrep -f aws-logs-agent-setup" }
 end
+=end
