@@ -15,7 +15,6 @@ service "codedeploy-agent" do
   action [:enable, :start]
 end
 
-
 =begin
 #template "#{Chef::Config[:file_cache_path]}/cwlogs.cfg" do
 template "/tmp/cwlogs.cfg" do
