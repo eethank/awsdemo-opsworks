@@ -1,6 +1,7 @@
 
 remote_file "#{Chef::Config[:file_cache_path]}/codedeploy-install.sh" do
-    source "https://s3.amazonaws.com/aws-codedeploy-us-east-1/latest/install"
+    #source "https://s3.amazonaws.com/aws-codedeploy-us-east-1/latest/install"
+    source "https://aws-codedeploy-ap-northeast-1.s3.amazonaws.com/latest/install"
     mode "0744"
     owner "root"
     group "root"
